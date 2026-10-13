@@ -18,6 +18,13 @@ symbol, placement, spacing, grouping and decimal separators, and the currency's 
 - **Locale-aware price formatting** via PHP `intl` (ICU) — e.g. on an `nl_NL` site `€ 1.234,50`, on `de_DE`
   `1.234,50 €`, and `¥1,234` for JPY (no decimals). Formatting follows the **site locale** (`i18n::get_locale()`);
   the currency only decides the symbol and the number of decimals.
+- **Pin the formatting locale** independently of the UI language with `format_locale` — useful for an
+  English-language shop that still wants EU number format. The currency symbol and decimals are unchanged; only the
+  digit grouping/placement follow this locale:
+  ```yaml
+  SilverShop\CurrencyFormat\LocaleCurrency:
+    format_locale: 'nl_NL'   # e.g. "€ 28.999,99" with an English UI; null (default) follows i18n::get_locale()
+  ```
 - Prices render for the selected currency **everywhere** they appear — product listings, detail, price ranges, cart,
   receipts, invoices — via an `Injector` override of silvershop's currency field.
 

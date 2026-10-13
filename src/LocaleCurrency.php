@@ -27,6 +27,17 @@ class LocaleCurrency extends ShopCurrency
      */
     private static array $formatters = [];
 
+    /**
+     * Locale used for price number formatting — grouping/decimal separators and symbol placement — as an ICU locale
+     * such as "nl_NL" or "de_DE". Null (the default) follows the site locale via {@link i18n::get_locale()}, so stock
+     * installs are unchanged. Set it to pin formatting to a region independently of the content/UI language — e.g. an
+     * English-language shop that still wants EU number format ("€ 28.999,99"). The currency code still decides the
+     * symbol and the number of decimals; only the digit grouping/placement follows this locale.
+     *
+     * @config
+     */
+    private static ?string $format_locale = null;
+
     public function Nice(): string
     {
         // "Free" (zero) handling is currency-agnostic — let the parent own it.
@@ -91,7 +102,7 @@ class LocaleCurrency extends ShopCurrency
             return false;
         }
 
-        $locale = i18n::get_locale();
+        $locale = self::config()->get('format_locale') ?: i18n::get_locale();
         $key = $locale . '|' . $display . '|' . $currency;
 
         if (!array_key_exists($key, self::$formatters)) {
