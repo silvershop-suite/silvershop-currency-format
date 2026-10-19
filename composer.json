@@ -1,5 +1,5 @@
 {
-    "name": "silvershop/currency-format",
+    "name": "silvershop-suite/currency-format",
     "description": "Set the shop base currency in the CMS (Settings > Shop) and render prices locale-aware for it (ICU): correct symbol, placement, separators and decimals. A drop-in for single-currency shops that would otherwise configure currency via YAML.",
     "type": "silverstripe-vendormodule",
     "keywords": ["silverstripe", "silvershop", "ecommerce", "currency", "locale", "intl", "formatting"],

@@ -37,7 +37,7 @@ currency is explicitly chosen. Installs that already configure currency via YAML
 ## Installation
 
 ```bash
-composer require silvershop/currency-format
+composer require silvershop-suite/currency-format
 ```
 
 Then run `dev/build?flush=all`. `ext-intl` is recommended (it powers the locale-aware formatting); without it the
